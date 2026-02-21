@@ -29,16 +29,6 @@ struct node* createNode(int value){
     return n;
 }
 
-struct node* insertEnd(struct node* head,struct node* tail,int value){
-    struct node* newNode=createNode(value);
-    if(head==NULL){
-        head=newNode;
-    }
-    else{
-        tail->next=newNode;
-    }
-    return head;
-}
 
 void Display(struct node* head){
     struct node* temp=head;
@@ -60,7 +50,14 @@ int main() {
     int value;
     for(int i=0;i<m;i++){
         scanf("%d",&value);
-        head=insertEnd(head,tail,value);
+        if(head==NULL){
+            head=createNode(value);
+            tail=head;
+        }
+        else{
+            tail->next=createNode(value);
+            tail=tail->next;
+        }
     }
     
     Display(head);
